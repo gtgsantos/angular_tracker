@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+
+	http://html5up.net/future-imperfect
+-->
+<html ng-app="mutrack">
+	<head>
+		<title>WPattern Mutrack Simple</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+
+        <!-- inject:css -->
+		<link rel="stylesheet" href="src/main/main.css">
+		<!-- endinject -->
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+		<div id="wrapper">
+
+		  <!-- Header -->
+			<header ng-include="'src/main/header.html'" id="header"></header>
+
+		  <!-- Menu -->
+			<section id="menu">
+				 <section ng-include="'src/main/menu.html'"> </section>
+			</section>
+
+		  <!-- Main -->
+			<div id="main">
+				<!-- Post -->
+				<article class="post">
+					<ng-view />
+				</article>
+			</div>
+
+		</div>
+
+		<script src="js/angular.min.js"></script>
+		<script src="js/angular-route.min.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/util.js"></script>
+		<script src="js/ie/html5shiv.js"></script>
+		<script src="js/ie/respond.min.js"></script>
+
+		<!-- inject:js -->
+		<script src="src/index.js"></script>
+		<script src="src/home/home.js"></script>
+		<script src="src/user/user.js"></script>
+		<script src="src/main/main.js"></script>
+		<!-- endinject -->
+	</body>
+</html>
