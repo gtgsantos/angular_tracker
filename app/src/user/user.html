@@ -1,1 +1,31 @@
-{{ test }}
+<div>
+    <div>
+        <br>
+        <h3>Users</h3>
+        <table>
+            <thead>
+                <tr>
+                        Nome
+                </tr>
+                <tr>
+                        E-mail
+                </tr>
+                <tr>
+                        Permissões
+                </tr>
+                <tr>
+                        Ações
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in users">
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
