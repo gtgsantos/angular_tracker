@@ -5,13 +5,13 @@
 
         <form ng-submit="saveUser(user)" ng-hide="!showAddEditUser">
             <label for="nome"> Nome</label>
-            <input type="text" id="nome" placeholder="Nome" ng-bind="user.nome" required/>
+            <input type="text" id="nome" placeholder="Nome" ng-model="user.name" required/>
             <br>
             <label for="email"> E-mail</label>
-            <input type="email" id="email" placeholder="E-mail" ng-bind="user.email" required/>
+            <input type="email" id="email" placeholder="E-mail" ng-model="user.email" required/>
             <br>
             <label for="password"> Password</label>
-            <input type="password" id="password" placeholder="Password" ng-bind="user.password" required/>
+            <input type="password" id="password" placeholder="Password" ng-model="user.password" required/>
 
             <button type="submit">Save</button>
             <button type="button" ng-click="hide()">Cancel</button>
@@ -23,19 +23,17 @@
         <table>
             <thead>
                 <tr>
-                    <td>
+                    <th>
                         Nome
-                    </td>
-                    <td>
+                    </th>
+                    <th>
                         E-mail
-                    </td>
-                    <td>
+                    </th>
+                    <th>
                         Permissões
-                    </td>
-
-                    <td>
-                        Ações
-                    </td>
+                    </th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -45,7 +43,10 @@
                     <td>
                         <div ng-repeat="permission in user.permissions">{{ permission.role | formatPermission}}</div>
                     </td>
-                    <td></td>
+                     
+                        <td><button ng-click="editUser(user)">Edit</button></td>
+                        <td><button ng-click="deleteUser(user)">Delete</button></td>
+                  
                 </tr>
             </tbody>
 

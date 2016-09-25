@@ -16,10 +16,39 @@ angular.module('mutrack')
         };
 
         $scope.saveUser = function (user) {
-            RestSrv.add('http://localhost:8080/api/private/user', user,
-                function () {
-                    hide();
+            if (user.id) {
+                RestSrv.edit('http://localhost:8080/api/private/user', user, function () {
+                    delete user.password;
+
+                    for (var i = 0; i < $scope.users.length; i++) {
+                        if ($scope.users[i].id === user.id) {
+                            $scope.users[i] = user;
+                        }
+                    }
+
+                    $scope.hide();
+                    ngNotify.set('User \'' + user.name + '\' updated.', 'success');
                 });
+            } else {
+                RestSrv.add('http://localhost:8080/api/private/user', user,
+                    function (response) {
+                        $scope.users.push(response.data);
+                        $scope.hide();
+                    });
+            }
+        };
+
+        $scope.deleteUser = function (user) {
+            RestSrv.delete('http://localhost:8080/api/private/user', user,
+                function (user) {
+                    $scope.users.splice($scope.users.indexOf(user), 1);
+                    $scope.hide();
+                });
+        };
+
+        $scope.editUser = function (user) {
+            $scope.user = angular.copy(user);
+            $scope.show();
         };
 
         RestSrv.find('http://localhost:8080/api/private/user',
