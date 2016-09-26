@@ -39,4 +39,6 @@ angular.module('mutrack')
         };
 
         return restFactory;
+    })
+    .service('SERVICE_PATH', function() {
     });

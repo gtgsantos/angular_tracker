@@ -1,7 +1,7 @@
 'use scrict';
 
 angular.module('mutrack')
-    .controller('UserCtrl', function ($scope, $http, RestSrv) {
+    .controller('UserCtrl', function ($scope, ngNotify, RestSrv, SERVICE_PATH) {
         $scope.users = [];
         $scope.user = {};
 
@@ -15,9 +15,12 @@ angular.module('mutrack')
             $scope.user = {};
         };
 
+        // Manage CRUD operations.
+        var userUrl = SERVICE_PATH.PRIVATE_PATH + '/user';
+
         $scope.saveUser = function (user) {
             if (user.id) {
-                RestSrv.edit('http://localhost:8080/api/private/user', user, function () {
+                RestSrv.edit(userUrl, user, function () {
                     delete user.password;
 
                     for (var i = 0; i < $scope.users.length; i++) {
@@ -30,7 +33,7 @@ angular.module('mutrack')
                     ngNotify.set('User \'' + user.name + '\' updated.', 'success');
                 });
             } else {
-                RestSrv.add('http://localhost:8080/api/private/user', user,
+                RestSrv.add(userUrl, user,
                     function (response) {
                         $scope.users.push(response.data);
                         $scope.hide();
@@ -39,7 +42,7 @@ angular.module('mutrack')
         };
 
         $scope.deleteUser = function (user) {
-            RestSrv.delete('http://localhost:8080/api/private/user', user,
+            RestSrv.delete(userUrl, user,
                 function (user) {
                     $scope.users.splice($scope.users.indexOf(user), 1);
                     $scope.hide();
@@ -51,7 +54,7 @@ angular.module('mutrack')
             $scope.show();
         };
 
-        RestSrv.find('http://localhost:8080/api/private/user',
+        RestSrv.find(userUrl,
             function (response) {
                 $scope.users = response.data;
             }
